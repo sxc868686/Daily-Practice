@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <img src="http://www.sinaimg.cn/dy/slidenews/21_img/2015_12/41065_4090899_803703.jpg" id="img1" alt="">
+
+    <script>
+        window.onload=function () {
+            var imgs=document.getElementById('img1');
+            var images= new Image();
+            var i=0;
+            var icur=0;
+
+            var arr=[
+                    'http://www.sinaimg.cn/dy/slidenews/21_img/2015_12/41065_4090899_803703.jpg',
+                    'http://simg314.magcasa.com/content_images/2015/05/09/110508/1431117926_9469.jpg',
+                    'https://static.mengniang.org/common/thumb/e/e8/43606864.jpg/310px-43606864.jpg',
+                    'http://uploads.yeyoujia.com/cms/images/2015/02/12/54dc5166ead55392626494.jpg',
+                    'http://uploads.yeyoujia.com/cms/images/2015/02/12/54dc51be5b883510188680.png'
+            ];
+
+            imgs.onclick=function () {
+              icur++;
+                if(icur<arr.length){
+                    imgs.src=arr[icur];
+                }else {
+                  icur=0;
+                    imgs.src=arr[icur];
+                };
+            };
+
+            function load() {
+               i++;
+                document.title=i+'/'+arr.length;
+                if(i<arr.length){//recursion 递归
+                    images.src=arr[i];
+                    load();
+                }
+
+            }
+            load();
+        };
+    </script>
+</body>
+</html>
