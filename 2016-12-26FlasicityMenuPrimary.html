@@ -44,7 +44,7 @@
                 //set the buffer value
                 speed*=Fn;
                 topline.style.left=topline.offsetLeft+speed+'px';
-                //when the flucation less than 1,we can set a fixed value for it
+                //when the fluctuation less than 1,we can set a fixed value for it
                 if(Math.abs(speed)<=1&&Math.abs(target-topline.offsetLeft)<=1){
                     topline.style.left=target+'px';
                     speed=0;
