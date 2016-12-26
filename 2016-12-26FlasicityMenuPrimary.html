@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>2016-12-26FlasicityMenu Primary</title>
+    <!--If you have any questions, please email me at eveonile@gmail.com-->
+    <style>
+        *{ margin:0; padding:0;}
+        #ul1{ width:428px; height:30px; margin:20px auto; position:relative;}
+        #ul1 li{ width:100px; height:30px; background:red; border:1px #000 solid; margin-right:5px;
+            float:left; list-style:none; line-height:30px; text-align:center;}
+        #ul1 #mark{ position:absolute; left:0; top:0; background:blue; height:10px;}
+    </style>
+</head>
+<body>
+<ul id="ul1">
+    <li id="mark"></li>
+    <li class="box">首页</li>
+    <li class="box">论坛</li>
+    <li class="box">视频</li>
+    <li class="box">留言</li>
+</ul>
+<script>
+    var uls=document.getElementById('ul1'); //get ul1
+    var topline=document.getElementById('mark'); //get blue line
+    var boxs=document.getElementsByClassName('box'); //get the other lines,ready to get the location
+
+    window.onload=function () {
+        //set the initial speed
+        var speed=0;
+        //set the timers
+        var timer;
+        //set the Coefficient of friction
+        var Fn=0.75;
+        //set deceleration coefficinet
+        var Friction=3;
+
+        function startMove(target) {
+            //clear timer
+            clearInterval(timer);
+            timer=setInterval(function () {
+                // get the speed you set
+                speed+=(target-topline.offsetLeft)/Friction;
+                //set the buffer value
+                speed*=Fn;
+                topline.style.left=topline.offsetLeft+speed+'px';
+                //when the flucation less than 1,we can set a fixed value for it
+                if(Math.abs(speed)<=1&&Math.abs(target-topline.offsetLeft)<=1){
+                    topline.style.left=target+'px';
+                    speed=0;
+                    clearInterval(timer);
+                }
+            },30)
+        }
+
+
+        for(var i=0;i<boxs.length;i++){
+            boxs[i].onmouseover=function () {
+                //set the target value
+                startMove(this.offsetLeft);
+            }
+
+        };
+
+
+
+
+    };
+
+
+</script>
+</body>
+</html>
