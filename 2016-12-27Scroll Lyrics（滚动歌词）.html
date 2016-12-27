@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>2016-12-27Scroll Lyrics</title>
+    <!--If you have any questions, please email me at eveonile@gmail.com-->
+    <style>
+        *{ margin:0; padding:0;}
+        #div1 , #div2{ position:absolute; left:0; top:0;}
+        #div2{ color:red; width:15px; height:16px; overflow:hidden;}
+        #div2 span{ position:absolute; left:0; top:0; width:2000px;}
+    </style>
+</head>
+<body>
+<div id="div1"><span>阿萨德哈克鲁斯大奖赛打开了三等奖</span></div>
+<div id="div2"><span>阿萨德哈克鲁斯大奖赛打开了三等奖</span></div>
+
+<script>
+    var div1=document.getElementById('div1');
+    var div2=document.getElementById('div2');
+    var span2=div2.getElementsByTagName('span')[0];
+    setInterval(function () {
+        div2.style.left=div2.offsetLeft+1+'px';
+        span2.style.left=-div2.offsetLeft+'px';
+    },30)
+</script>
+
+</body>
+</html>
