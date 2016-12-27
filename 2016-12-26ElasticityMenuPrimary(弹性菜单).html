@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>2016-12-26FlasicityMenu Primary</title>
+    <title>2016-12-26 Elasticity Menu Primary</title>
     <!--If you have any questions, please email me at eveonile@gmail.com-->
     <style>
         *{ margin:0; padding:0;}
@@ -30,18 +30,18 @@
         var speed=0;
         //set the timers
         var timer;
-        //set the Coefficient of friction
+        //set the Coefficient of friction（设置摩擦力系数）
         var Fn=0.75;
-        //set deceleration coefficinet
+        //set deceleration coefficinet（设置减速系数）
         var Friction=3;
 
         function startMove(target) {
             //clear timer
             clearInterval(timer);
             timer=setInterval(function () {
-                // get the speed you set
+                // get the speed you set （得到你设定的速度）
                 speed+=(target-topline.offsetLeft)/Friction;
-                //set the buffer value
+                //set the buffer value （缓冲值）
                 speed*=Fn;
                 topline.style.left=topline.offsetLeft+speed+'px';
                 //when the fluctuation less than 1,we can set a fixed value for it
