@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Elastic Boundary Problems(弹性过界问题)</title>
+    <!--If you have any questions, please email me at eveonile@gmail.com-->
+    <style>
+        #div1{ width:100px; height:30px; background:red;}
+    </style>
+</head>
+<body>
+<div id="div1"></div>
+<script>
+    window.onload=function () {
+        var div1=document.getElementById('div1');
+
+        var speed=0;
+        var fn=0.75;
+        var timer;
+
+        div1.onmouseover=function () {
+            startMove(this,300);
+        };
+        div1.onmouseout=function () {
+            startMove(this,30);
+        };
+
+        function startMove(obj,target) {
+            //obj:你需要设定的元素 (You need to set the element)
+            //target:目标值 (value)
+            clearInterval(timer);
+            timer=setInterval(function () {
+                speed+=(target-obj.offsetHeight)/6;
+                speed*=fn;
+                if(Math.abs(speed)<=1&&Math.abs(target-obj.offsetHeight)<=1){
+                    clearInterval(timer);
+                    speed=0;
+                    obj.style.height=target+'px';
+                }else {
+
+                    var h=obj.offsetHeight+speed;
+
+                    if(h<0){
+                        h=0;//兼容IE8以下,解决弹性过界问题 （Compatible with IE8 following，Solve the elastic boundary problem）
+                    }
+
+                    obj.style.height=h+'px';
+                };
+            },30)
+
+
+        }
+    };
+</script>
+</body>
+</html>
