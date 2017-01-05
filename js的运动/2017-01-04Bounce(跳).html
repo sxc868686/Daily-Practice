@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bounce(跳)</title>
+    <!--If you have any questions, please email me at eveonile@gmail.com-->
+    <style>
+        #div1{ width:100px; height:100px; background:red; position: absolute;}
+    </style>
+</head>
+<body>
+<div id="div1"></div>
+<script>
+    var div1=document.getElementById('div1');
+    var speedX=10;
+    var speedY=10;
+    var x;
+    var y;
+    var timer;
+
+    window.onload=function () {
+        clearInterval(timer);
+        timer=setInterval(function () {
+
+            x=div1.offsetTop+speedX;
+            y=div1.offsetLeft+speedY;
+
+            if(x>document.documentElement.clientHeight-div1.offsetHeight){
+
+                x=document.documentElement.clientHeight-div1.offsetHeight;
+                speedX*=-1;
+
+            }else if(x<0){
+
+              x=0;
+              speedX*=-1;
+
+            };
+            if(y>document.documentElement.clientWidth-div1.offsetWidth){
+
+                y=document.documentElement.clientWidth-div1.offsetWidth;
+                speedY*=-1;
+
+            }else if(y<0){
+
+                y=0;
+                speedY*=-1;
+
+            };
+
+            div1.style.top=x+'px';
+            div1.style.left=y+'px';
+        },30);
+    };
+</script>
+</body>
+</html>
