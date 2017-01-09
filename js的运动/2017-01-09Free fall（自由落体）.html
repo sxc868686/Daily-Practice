@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Free fall</title>
+    <!--If you have any questions, please email me at eveonile@gmail.com-->
+    <style>
+        #div1{ width:100px; height:100px; background:red; position:absolute;}
+    </style>
+</head>
+<body>
+<input type="button" value="开始运动" id="input1">
+<div id="div1"></div>
+<script>
+    window.onload=function () {
+        var div1=document.getElementById('div1');
+        var input1=document.getElementById('input1');
+
+        var speedY=0;
+        var Fn=0.75;
+        var timer;
+        function move() {
+            clearInterval(timer);
+            setInterval(function () {
+                speedY+=(document.documentElement.clientHeight-div1.offsetHeight)/200;
+                var h = div1.offsetTop + speedY;
+                if(h>document.documentElement.clientHeight-div1.offsetHeight){
+                    h=document.documentElement.clientHeight-div1.offsetHeight;
+                    speedY*=-1;
+                    speedY*=Fn;
+                }
+                if(Math.abs(speedY)<=2&&div1.style.top<=848+'px'){
+                    div1.style.top=document.documentElement.clientHeight-div1.offsetHeight+'px';
+                    speedY=0;
+                    clearInterval(timer);
+                }
+
+
+                console.log(Math.abs(speedY));
+                console.log(div1.style.top);
+
+                div1.style.top=h+'px';
+            },30)
+        };
+
+        input1.onclick=function () {
+            move();
+        };
+
+
+
+    };
+</script>
+</body>
+</html>
