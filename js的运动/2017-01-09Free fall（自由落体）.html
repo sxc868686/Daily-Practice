@@ -22,22 +22,14 @@
         function move() {
             clearInterval(timer);
             setInterval(function () {
-                speedY+=(document.documentElement.clientHeight-div1.offsetHeight)/200;
+                speedY+=(document.documentElement.clientHeight-div1.offsetHeight)/200;//设定你的速度
                 var h = div1.offsetTop + speedY;
                 if(h>document.documentElement.clientHeight-div1.offsetHeight){
                     h=document.documentElement.clientHeight-div1.offsetHeight;
                     speedY*=-1;
                     speedY*=Fn;
                 }
-                if(Math.abs(speedY)<=2&&div1.style.top<=848+'px'){
-                    div1.style.top=document.documentElement.clientHeight-div1.offsetHeight+'px';
-                    speedY=0;
-                    clearInterval(timer);
-                }
-
-
-                console.log(Math.abs(speedY));
-                console.log(div1.style.top);
+                
 
                 div1.style.top=h+'px';
             },30)
