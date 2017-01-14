@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!--If you have any questions, please email me at eveonile@gmail.com-->
+    <style>
+        #div1{ width:100px; height:100px; background:red; position:absolute; top: 500px;}
+    </style>
+</head>
+<body>
+<input type="button" value="开始运动" id="input1">
+<div id="div1"></div>
+<script>
+    var ipt=document.getElementById('input1');
+    var div1=document.getElementById('div1');
+
+    var speed=-40;//纵向速度
+    var speedX=10;//横向速度
+    var Fn=0.75;//摩擦力系数
+    var timer;
+
+    function move() {
+        clearInterval(timer);
+        setInterval(function () {
+            speed+=5;
+            var h=div1.offsetTop+speed;
+            if(h>document.documentElement.clientHeight-div1.offsetHeight){//当div超过边界时使div反弹
+                h=document.documentElement.clientHeight-div1.offsetHeight;
+                speed*=-1;
+                speed*=Fn;
+                speedX*=Fn;
+            }
+            div1.style.top=h+'px';
+            div1.style.left=div1.offsetLeft+speedX+'px';
+
+        },30);
+
+    };
+    ipt.onclick=function () {
+        move();
+    };
+</script>
+</body>
+</html>
