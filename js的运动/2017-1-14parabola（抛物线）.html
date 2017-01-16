@@ -12,34 +12,32 @@
 <input type="button" value="开始运动" id="input1">
 <div id="div1"></div>
 <script>
-    var ipt=document.getElementById('input1');
+    var input1=document.getElementById('input1');
     var div1=document.getElementById('div1');
-
-    var speed=-40;//纵向速度
-    var speedX=10;//横向速度
-    var Fn=0.75;//摩擦力系数
+    var speedx=-40; //初始向上的速度
+    var speedy=10; //匀速向右的速度;
+    var Fn=0.75; //摩擦力系数
     var timer;
-
+    input1.onclick=function () {
+        move();
+    };
     function move() {
         clearInterval(timer);
         setInterval(function () {
-            speed+=5;
-            var h=div1.offsetTop+speed;
-            if(h>document.documentElement.clientHeight-div1.offsetHeight){//当div超过边界时使div反弹
+            speedx+=3; //匀加速，模仿抛物线
+            var h=div1.offsetTop+speedx;
+            var w=div1.offsetLeft+speedy;
+            if(h>document.documentElement.clientHeight-div1.offsetHeight){//当div超出可视区域时，重新修正div方向，并取反速度方向
                 h=document.documentElement.clientHeight-div1.offsetHeight;
-                speed*=-1;
-                speed*=Fn;
-                speedX*=Fn;
-            }
+                speedx*=-1;
+                speedx*=Fn;
+                speedy*=Fn;
+            };
             div1.style.top=h+'px';
-            div1.style.left=div1.offsetLeft+speedX+'px';
+            div1.style.left=w+'px';
+        },30)
+    }
 
-        },30);
-
-    };
-    ipt.onclick=function () {
-        move();
-    };
 </script>
 </body>
 </html>
