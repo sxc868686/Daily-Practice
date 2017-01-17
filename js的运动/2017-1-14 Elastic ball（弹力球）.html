@@ -9,6 +9,33 @@
     </style>
 </head>
 <body>
+<div id="div1"></div>
+<script>
+    window.onload=function () {
+        var div1=document.getElementById('div1');
+        var disX=0;//横向移动距离
+        var disY=0;//纵向移动距离
 
+        div1.onmousedown=function (ev) {
+            var ev=ev || window.event; //取得基本参数
+            //取得鼠标点击的坐标
+            disX=ev.clientX-div1.offsetLeft;
+            disY=ev.clientY-div1.offsetTop;
+            document.onmousemove=function (ev) {
+                var ev=ev || window.event; //取得基本参数
+                //实现鼠标拖拽移动
+                div1.style.top=ev.clientY-disY+'px';
+                div1.style.left=ev.clientX-disX+'px';
+            };
+            document.onmouseup=function () {
+                //当鼠标松开时，清除方法
+                document.onmousemove=null;
+                document.onmouseup=null;
+            };
+            return false;
+        };
+
+    };
+</script>
 </body>
 </html>
