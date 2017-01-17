@@ -5,7 +5,7 @@
     <title>Title</title>
     <!--If you have any questions, please email me at eveonile@gmail.com-->
     <style>
-        #div1{ width:100px; height:100px; background:red; position:absolute;}
+        #div1{ width:100px; height:100px; background:red; position:absolute; border-radius: 50%}
     </style>
 </head>
 <body>
@@ -15,25 +15,78 @@
         var div1=document.getElementById('div1');
         var disX=0;//横向移动距离
         var disY=0;//纵向移动距离
+        var prevX=0; //记录点下的位置
+        var prevY=0; //记录点下的位置
+        var ispeedX=0; //横向移动速度
+        var ispeedY=0; //纵向移动速度
+        var timer;
 
         div1.onmousedown=function (ev) {
             var ev=ev || window.event; //取得基本参数
             //取得鼠标点击的坐标
             disX=ev.clientX-div1.offsetLeft;
             disY=ev.clientY-div1.offsetTop;
+            //记录初始点下的位置
+            prevX=ev.clientX;
+            prevY=ev.clientY;
+
             document.onmousemove=function (ev) {
                 var ev=ev || window.event; //取得基本参数
                 //实现鼠标拖拽移动
                 div1.style.top=ev.clientY-disY+'px';
                 div1.style.left=ev.clientX-disX+'px';
+                //计算最后一个点到前一个点的距离，得到出手速度
+                ispeedX=ev.clientX-prevX;
+                ispeedY=ev.clientY-prevY;
+                //记录倒数第二个点的位置
+                prevX=ev.clientX;
+                prevY=ev.clientY;
             };
             document.onmouseup=function () {
                 //当鼠标松开时，清除方法
                 document.onmousemove=null;
                 document.onmouseup=null;
+                //松开的时候执行后续操作
+                move();
             };
             return false;
         };
+        function move() {
+            clearInterval(timer);
+            timer=setInterval(function () {
+                ispeedY+= 3;
+                //ispeedX += 3;
+
+                var L = div1.offsetLeft + ispeedX;
+                var T = div1.offsetTop + ispeedY;
+
+                if(T>document.documentElement.clientHeight - div1.offsetHeight){
+                    T = document.documentElement.clientHeight - div1.offsetHeight;
+                    ispeedY *= -1;
+                    ispeedY *= 0.75;
+                    ispeedX *= 0.75;
+                }
+                else if(T<0){
+                    T = 0;
+                    ispeedY *= -1;
+                    ispeedY *= 0.75;
+                }
+
+                if(L>document.documentElement.clientWidth - div1.offsetWidth){
+                    L = document.documentElement.clientWidth - div1.offsetWidth;
+                    ispeedX *= -1;
+                    ispeedX *= 0.75;
+                }
+                else if(L<0){
+                    L = 0;
+                    ispeedX *= -1;
+                    ispeedX *= 0.75;
+                }
+
+                div1.style.left = L + 'px';
+                div1.style.top = T + 'px';
+            },30);
+        }
 
     };
 </script>
