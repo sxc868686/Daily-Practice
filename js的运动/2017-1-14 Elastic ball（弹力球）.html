@@ -19,9 +19,11 @@
         var prevY=0; //记录点下的位置
         var ispeedX=0; //横向移动速度
         var ispeedY=0; //纵向移动速度
+        var Fn=0.75; //摩擦力系数
         var timer;
 
         div1.onmousedown=function (ev) {
+            clearInterval(timer);
             var ev=ev || window.event; //取得基本参数
             //取得鼠标点击的坐标
             disX=ev.clientX-div1.offsetLeft;
@@ -54,37 +56,34 @@
         function move() {
             clearInterval(timer);
             timer=setInterval(function () {
-                ispeedY+= 3;
-                //ispeedX += 3;
+                 ispeedY+=3;
+                 var h=div1.offsetTop+ispeedY;
+                 var w=div1.offsetLeft+ispeedX;
 
-                var L = div1.offsetLeft + ispeedX;
-                var T = div1.offsetTop + ispeedY;
-
-                if(T>document.documentElement.clientHeight - div1.offsetHeight){
-                    T = document.documentElement.clientHeight - div1.offsetHeight;
-                    ispeedY *= -1;
-                    ispeedY *= 0.75;
-                    ispeedX *= 0.75;
-                }
-                else if(T<0){
-                    T = 0;
-                    ispeedY *= -1;
-                    ispeedY *= 0.75;
+                if(h>document.documentElement.clientHeight-div1.offsetHeight){
+                    h=document.documentElement.clientHeight-div1.offsetHeight;
+                    ispeedY*=-1;
+                    ispeedY*=Fn;
+                    ispeedX*=Fn;
+                }else if(h<0){
+                    h=0;
+                    ispeedY*=-1;
+                    ispeedY*=Fn;
                 }
 
-                if(L>document.documentElement.clientWidth - div1.offsetWidth){
-                    L = document.documentElement.clientWidth - div1.offsetWidth;
-                    ispeedX *= -1;
-                    ispeedX *= 0.75;
-                }
-                else if(L<0){
-                    L = 0;
-                    ispeedX *= -1;
-                    ispeedX *= 0.75;
-                }
+                if(w>document.documentElement.clientWidth-div1.offsetWidth){
+                    w=document.documentElement.clientWidth-div1.offsetWidth;
+                    ispeedX*=-1;
+                    ispeedX*=Fn;
 
-                div1.style.left = L + 'px';
-                div1.style.top = T + 'px';
+                }else if(w<0){
+                    w=0;
+                    ispeedX*=-1;
+                    ispeedX*=Fn;
+                }
+                div1.style.top=h+'px';
+                div1.style.left=w+'px';
+
             },30);
         }
 
