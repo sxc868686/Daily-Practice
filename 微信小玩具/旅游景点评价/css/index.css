@@ -72,14 +72,16 @@ animation-fill-mode: forwards;}
 
 /*首页（图片轮播）*/
 #tabPic{overflow: hidden; position: relative;}
-.picList{overflow: hidden;}
-.picList li{float: left;}
+.picList{overflow: hidden;  }
+.picList li{float: left; position: relative;}
+.picList li p{font-size: 29px; position: absolute;  color: white; line-height: 120px;
+text-indent: 26px; height: 102px; width: 100%; left: 0; bottom: 0; display: block;
+background:-webkit-linear-gradient(bottom,rgba(0,0,0,0.9) 0,rgba(0,0,0,0.8) 10%,rgba(0,0,0,0));
+background:linear-gradient(bottom,rgba(0,0,0,0.9) 0,rgba(0,0,0,0.8) 10%,rgba(0,0,0,0));
+}
 .picList img{width: 100%; height: 342px;}
-.picMask{height: 102px; position: absolute; left: 0; bottom: 0; width: 100%;
-background: -webkit-linear-gradient(bottom,rgba(0,0,0,0.9),rgba(0,0,0,8)10%,rgba(0,0,0,0));
-linear-gradient(bottom,rgba(0,0,0,0.9),rgba(0,0,0,8)10%,rgba(0,0,0,0));}
-.picMask p{font-size: 29px; line-height: 120px; color: white; text-indent: 26px;}
-.picMask nav{height: 10px; right: 26px; top: 56px; position: absolute;}
+.picMask{height: 102px; position: absolute; left: 0; bottom: 0; width: 100%;}
+.picMask nav{height: 10px; right: 26px; top: 56px; position: absolute; z-index: 5;}
 .picMask nav a{float: left; width: 10px; height: 10px; border-radius: 5px;
 background: white; opacity: 0.5; margin-left: 15px;}
 .picMask nav a.active{opacity: 1;}
