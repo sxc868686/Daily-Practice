@@ -30,3 +30,11 @@ function addClass(obj, sClass) {
     }
     obj.className += ' ' + sClass;
 }
+
+window.onload=function () {
+    var pli=id('picList').getElementsByTagName('li');
+    id('picList').style.width=pli.length+'00%';
+    for(var i=0;i<pli.length;i++){
+      pli[i].style.width=view().w+'px';
+    };
+};
