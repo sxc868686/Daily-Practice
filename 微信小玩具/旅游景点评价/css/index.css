@@ -85,3 +85,12 @@ background:linear-gradient(bottom,rgba(0,0,0,0.9) 0,rgba(0,0,0,0.8) 10%,rgba(0,0
 .picMask nav a{float: left; width: 10px; height: 10px; border-radius: 5px;
 background: white; opacity: 0.5; margin-left: 15px;}
 .picMask nav a.active{opacity: 1;}
+
+/*首页（评分组件）*/
+#score{line-height: 60px; padding: 17px 0 0 26px; }
+#score h2{font-size: 28px;}
+#score li{height: 60px; position: relative;}
+#score nav{position: absolute; left: 187px; top: 12px;}
+#score nav a{float: left; background: url("../img/star.png") no-repeat -38px 0;
+width: 38px; height: 36px; margin-right: 39px;}
+#score nav .active{background-position: 0 0;}
