@@ -122,5 +122,32 @@ window.onload=function () {
 
     };
 
+    //评分组件
+    function fnScore(){
+        var oScore=id('score');
+        var sLi=oScore.getElementsByTagName('li');
+        var arr=['失望','无聊','一般','良好','很棒'];//评分对应的文字
+        for(var i=0;i<sLi.length;i++){
+            fn(sLi[i]);
+        };
+        function fn(oLi) {
+            var aNav=oLi.getElementsByTagName('a');
+            for(var i=0;i<aNav.length; i++){
+                aNav[i].index=i;
+                bind(aNav[i],'touchstart',function (ev) {
+                    //点击之后判断点击的是哪一个星，然后进行打分操作
+                    for(var i=0;i<aNav.length; i++){
+                        if(i<=this.index){
+                            addClass(aNav[i],'active');
+                        }else {
+                            removeClass(aNav[i],'active');
+                        }
+                    };
+                });
+            };
+        }
+    }
+
     fnTab();
+    fnScore();
 };
