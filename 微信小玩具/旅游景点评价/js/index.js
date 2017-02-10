@@ -70,8 +70,8 @@ window.onload=function () {
         //执行代码
         function Tab() {
             iX=-tNow*iW; //每次移动一个屏幕
-            tList.style.WebkitTransform='translateX('+iX+'px)';
-            tList.style.WebkitTransition='0.5s';
+            tList.style.transform=tList.style.WebkitTransform='translateX('+iX+'px)';
+            tList.style.transition=tList.style.WebkitTransition='0.5s';
             for(var i=0;i<tNav.length;i++){
                 removeClass(tNav[i],'active');
             };
@@ -89,7 +89,7 @@ window.onload=function () {
         //手指滑动开始事件
         function fnStart(ev) {
             clearInterval(oTimer);
-            tList.style.WebkitTransition='none';//清除延迟，否则滑动如同生锈一般
+            tList.style.transition=tList.style.WebkitTransition='none';//清除延迟，否则滑动如同生锈一般
             var ev=ev || window.event;
             ev=ev.changedTouches[0];
             //console.log(ev); 得到changedTouches的参数列表
@@ -103,7 +103,7 @@ window.onload=function () {
             ev=ev.changedTouches[0];
             var iDis=ev.pageX-iStartTouchX;//得到出发点和移动后的终点距离的差值
             iX=iTouchX+iDis;
-            tList.style.WebkitTransform='translateX('+iX+'px)';
+            tList.style.transform=tList.style.WebkitTransform='translateX('+iX+'px)';
         };
         //滑动结束事件
         function fnEnd() {
