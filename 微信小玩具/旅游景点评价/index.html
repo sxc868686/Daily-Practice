@@ -80,6 +80,7 @@
                     <a href="javascript:;"></a>
                     <a href="javascript:;"></a>
                 </nav>
+                <input type="hidden" value="0" />
             </li>
             <li>
                 <span>服务指数</span>
@@ -90,6 +91,7 @@
                     <a href="javascript:;"></a>
                     <a href="javascript:;"></a>
                 </nav>
+                <input type="hidden" value="0" />
             </li>
             <li>
                 <span>消费指数</span>
@@ -100,11 +102,12 @@
                     <a href="javascript:;"></a>
                     <a href="javascript:;"></a>
                 </nav>
+                <input type="hidden" value="0" />
             </li>
         </ul>
     </div>
     <!--标签选择-->
-    <div class="tags">
+    <div class="tags" id="indexTag">
         <h2>给景区添加标签</h2>
         <label>
             <input type="radio" name="tags" value="服务好">
@@ -144,7 +147,7 @@
         </label>
     </div>
     <!--提交按钮-->
-    <p class="info">请给景区评分</p>
+    <p class="info"></p>
     <input type="button" value="提交" class="btn">
 </section>
 <section class="page">表单页</section>

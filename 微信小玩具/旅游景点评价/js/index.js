@@ -126,12 +126,13 @@ window.onload=function () {
     function fnScore(){
         var oScore=id('score');
         var sLi=oScore.getElementsByTagName('li');
-        var arr=['失望','无聊','一般','良好','很棒'];//评分对应的文字
+        var arr=['很差','较差','一般','良好','很棒'];//评分对应的文字
         for(var i=0;i<sLi.length;i++){
             fn(sLi[i]);
         };
         function fn(oLi) {
             var aNav=oLi.getElementsByTagName('a');
+            var oInput=oLi.getElementsByTagName("input")[0];
             for(var i=0;i<aNav.length; i++){
                 aNav[i].index=i;
                 bind(aNav[i],'touchstart',function (ev) {
@@ -143,11 +144,66 @@ window.onload=function () {
                             removeClass(aNav[i],'active');
                         }
                     };
+                    oInput.value=arr[this.index];
                 });
             };
         }
+    };
+    //当验证不通过时所提示的信息
+    function fnInfo(oInfo,sInfo) {//oInfo为元素，sInfo为需要提示的信息
+        oInfo.innerHTML=sInfo;
+        oInfo.style.transform=oInfo.style.WebkitTransform='scale(1)';
+        oInfo.style.opacity=1;
+        setTimeout(function () {//让提示信息展示半秒钟后消失
+            oInfo.style.transform=oInfo.style.WebkitTransform='scale(0)';
+            oInfo.style.opacity=0;
+        },1000)
     }
+    
+    //提交按钮
+    function fnIndex() {
+        var oIndex=id("index");
+        var oBtn=oIndex.getElementsByClassName('btn')[0];
+        var pf=false;//判断是否评分
+        var oInfo=oIndex.getElementsByClassName('info')[0];
+        bind(oBtn,'touchend',fnEnd);
+        function fnEnd() {
+            pf=fnScoreChecked();
+            if(pf){//如果验证通过，则判断是否选择标签
+                if(bTag()){
+
+                }else {
+                    fnInfo(oInfo,"请给景区添加标签");
+                }
+            }else{
+                 fnInfo(oInfo,"请给景区评分");
+            };
+        };
+        //判断用户是否评分
+        function fnScoreChecked() {
+            var oScore=id('score');
+            var oInput=oScore.getElementsByTagName('input');
+            for (var i=0; i<oInput.length; i++){
+                if(oInput[i].value==0){
+                    return false;
+                }
+            };
+            return true;
+        };
+        //判断用户是否选择tag
+        function bTag() {
+            var oTag=id('indexTag');
+            var oInput=oTag.getElementsByTagName('input');
+            for (var i=0; i<oInput.length; i++){
+                if(oInput[i].checked){//如果有一项被选择了就为true
+                    return true;
+                }
+            };
+            return false;
+        };
+    };
 
     fnTab();
     fnScore();
+    fnIndex();
 };

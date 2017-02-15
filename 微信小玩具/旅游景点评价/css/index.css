@@ -112,4 +112,3 @@ font-size: 30px; background: #cacaca; border-radius: 5px; color: #666;}
 .info{font-size: 26px; line-height: 60px; text-align: center; width: 100%;
 position: absolute; bottom: 90px; -webkit-transform-origin: bottom; transform-origin: bottom;
 -webkit-transform: scale(0); transform: scale(0); transition: 0.5s; opacity: 0;}
-#index:active .info{-webkit-transform: scale(1); transform: scale(1); opacity: 1;}
