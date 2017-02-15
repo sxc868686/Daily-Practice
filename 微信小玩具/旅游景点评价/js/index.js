@@ -170,8 +170,8 @@ window.onload=function () {
         function fnEnd() {
             pf=fnScoreChecked();
             if(pf){//如果验证通过，则判断是否选择标签
-                if(bTag()){
-
+                if(bTag()){//验证通过，执行弹出层
+                    fnIndexOut();
                 }else {
                     fnInfo(oInfo,"请给景区添加标签");
                 }
@@ -202,6 +202,24 @@ window.onload=function () {
             return false;
         };
     };
+    //首页跳出方法
+    function fnIndexOut() {
+        var oMask=id('mask');
+        var oIndex=id('index');
+        var news=id('news');
+        addClass(oMask,'pageShow');
+        addClass(news,'pageShow');
+       setTimeout(function () {
+            oMask.style.opacity=1;
+            oIndex.style.filter=oIndex.style.WebkitFiter="blur(5px)";//当弹窗时背景变模糊
+        },10);
+        setTimeout(function () {//3秒钟后结束并跳转
+            oMask.style.opacity=0;
+            oIndex.style.filter=oIndex.style.WebkitFiter="blur(0px)";//当弹窗时背景变模糊
+            news.style.opacity=1;
+        },3000)
+
+ };
 
     fnTab();
     fnScore();
