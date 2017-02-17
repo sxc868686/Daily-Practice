@@ -116,3 +116,23 @@
         -webkit-transform: translateX(50px);
     }
 }
+@keyframes cloud{
+    0%
+    {
+        transform: translateX(0px);
+    }
+    100%
+    {
+        transform: translateX(50px);
+    }
+}
+/*新闻线索*/
+@-webkit-keyframes newsBtn {
+    0%{
+        -webkit-transform: scale(0);
+        opacity: 0.1;
+    }
+    100%{
+        -webkit-transform: scale(1.3);
+    }
+}

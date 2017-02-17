@@ -82,10 +82,6 @@ window.onload=function () {
         bind(tab,'touchmove',fnMove);
         bind(tab,'touchend',fnEnd);
         auto();
-        //清除默认的touchmove事件
-        bind(document,'touchmove',function (ev) {
-            ev.preventDefault();
-        })
         //手指滑动开始事件
         function fnStart(ev) {
             clearInterval(oTimer);

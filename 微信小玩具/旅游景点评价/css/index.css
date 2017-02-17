@@ -9,7 +9,7 @@ img{ border:none; vertical-align:top;}
 body{margin:0;position:relative; font-family:Arial,"微软雅黑";color:#666; font-size:26px;}
 /*page公用样式*/
 .page{height: 100%; width: 100%; background: white;
-    position: absolute; left: 0; top: 0; overflow: hidden;
+    position: absolute; left: 0; top: 0; overflow: auto;
     font-size: 26px; z-index: 1; display: none;}
 .pageShow{display: block;}
 /*设置页面层级*/
@@ -108,11 +108,33 @@ border-radius: 26px;}
 
 /*首页（提交）*/
 .btn{position: absolute; bottom: 17px; left: 17px; width: 606px; height: 74px;
-font-size: 30px; background: #cacaca; border-radius: 5px; color: #666;}
+font-size: 30px; background: #3c9bbb; border-radius: 5px; color: #fff;}
 .submit{background: #3c9bbb; color: white;}
 .info{font-size: 26px; line-height: 60px; text-align: center; width: 100%;
 position: absolute; bottom: 90px; -webkit-transform-origin: bottom; transform-origin: bottom;
 -webkit-transform: scale(0); transform: scale(0); transition: 0.5s; opacity: 0;}
+.scrollWarp{position: relative; height: 100%; min-height: 1136px; overflow: hidden;}
+/*新闻线索*/
+.newsBtn{position:absolute;top:20px;right:20px;width:78px;height:78px; }
+.newsBtn em{width: 56px; height: 56px; padding: 11px 11px; font-size: 22px; line-height: 28px;
+letter-spacing: 2px; text-align: center;background: rgba(230,0,18,0.5); color: #fff;
+text-decoration: none; border-radius: 39px;  z-index: 2; position: absolute; left: 0px; top: 0px;}
+.newsBtn span{background: rgba(230,0,18,0.9); position: absolute; width: 78px; height: 78px;
+top: 0px; left: 0px; opacity: 0.1; border-radius:39px;
+-webkit-transform: scale(0);
+}
+.newsBtn span:nth-of-type(1){
+    -webkit-animation:newsBtn 2s infinite alternate;
+    animation:newsBtn 2s infinite alternate;
+}
+.newsBtn span:nth-of-type(2){
+    -webkit-animation:newsBtn 2s 0.5s infinite alternate;
+    animation:newsBtn 2s 0.5s infinite alternate;
+}.newsBtn span:nth-of-type(3){
+     -webkit-animation:newsBtn 2s 1.5s infinite alternate;
+     animation:newsBtn 2s 1.5s infinite alternate;
+ }
+
 
 /*跳转页面*/
 #mask{background: rgba(0,0,0,0.7) url("../img/mask.png") no-repeat center 300px;

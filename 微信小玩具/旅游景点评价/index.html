@@ -37,42 +37,51 @@
 <section class="page" id="mask"></section>
 <!--首页-->
 <section class="page pageShow" id="index">
+    <!--兼容iphone4-->
+    <div class="scrollWarp">
     <!--图片轮播-->
-    <div id="tabPic">
-        <ul id="picList" class="picList">
-            <li>
-                <p>成都九寨沟景区</p>
-                <img src="img/1.jpg" alt="">
-            </li>
-            <li>
-                <p>成都九寨沟景区</p>
-                <img src="img/2.jpg" alt="">
-            </li>
-            <li>
-                <p>成都九寨沟景区</p>
-                <img src="img/3.jpg" alt="">
-            </li>
-            <li>
-                <p>成都九寨沟景区</p>
-                <img src="img/4.jpg" alt="">
-            </li>
-            <li>
-                <p>成都九寨沟景区</p>
-                <img src="img/5.jpg" alt="">
-            </li>
-        </ul>
-        <!--轮播点-->
-        <section class="picMask">
-            <nav>
-                <a href="javascript:;" class="active"></a>
-                <a href="javascript:;"></a>
-                <a href="javascript:;"></a>
-                <a href="javascript:;"></a>
-                <a href="javascript:;"></a>
-            </nav>
-        </section>
-    </div>
+        <div id="tabPic">
+            <ul id="picList" class="picList">
+                <li>
+                    <p>成都九寨沟景区</p>
+                    <img src="img/1.jpg" alt="">
+                </li>
+                <li>
+                    <p>成都九寨沟景区</p>
+                    <img src="img/2.jpg" alt="">
+                </li>
+                <li>
+                    <p>成都九寨沟景区</p>
+                    <img src="img/3.jpg" alt="">
+                </li>
+                <li>
+                    <p>成都九寨沟景区</p>
+                    <img src="img/4.jpg" alt="">
+                </li>
+                <li>
+                    <p>成都九寨沟景区</p>
+                    <img src="img/5.jpg" alt="">
+                </li>
+            </ul>
+            <!--轮播点-->
+            <section class="picMask">
+                <nav>
+                    <a href="javascript:;" class="active"></a>
+                    <a href="javascript:;"></a>
+                    <a href="javascript:;"></a>
+                    <a href="javascript:;"></a>
+                    <a href="javascript:;"></a>
+                </nav>
+            </section>
+        </div>
+
     <!--评分组件-->
+    <a href="javascript:;" class="newsBtn">
+        <em>新闻线索</em>
+        <span></span>
+        <span></span>
+        <span></span>
+    </a>
     <div id="score">
         <h2>给景区评分</h2>
         <ul class="scoreList">
@@ -154,6 +163,7 @@
     <!--提交按钮-->
     <p class="info"></p>
     <input type="button" value="提交" class="btn">
+    </div>
 </section>
 
 <section class="page">表单页</section>
