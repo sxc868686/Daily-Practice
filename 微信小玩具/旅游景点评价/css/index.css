@@ -21,6 +21,7 @@ body{margin:0;position:relative; font-family:Arial,"微软雅黑";color:#666; fo
 
 
 /*欢迎页*/
+#welcome{transition: .7s;}
 .tree{position: absolute; left: 0; top: 10%; width: 100%;
 -webkit-transform: translateY(100px);
 transform: translateY(100px); opacity: 0;
@@ -142,4 +143,4 @@ transition: 1s;
 -webkit-transition: 1s; opacity: 0;}
 
 /*新闻页*/
-#news{transition: 0.5s; opacity: 0;}
+#news{transition: 0.5s; }

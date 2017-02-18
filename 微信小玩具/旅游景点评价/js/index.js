@@ -45,7 +45,31 @@ window.onload=function () {
     for(var i=0;i<pli.length;i++){
       pli[i].style.width=view().w+'px';
     };
+    //欢迎页动画执行完成后切换
+    function fnLoad() {
+        var wel=id('welcome');
+        var time=new Date().getTime();//得到开始的时间
+        var bTime=false;//判断动画是否执行完
+        var otimer=0;
+        bind(wel,'webkitTransitionEnd',end)
+        bind(wel,'transitionend',end)
+        otimer=setInterval(function () {
+            if(new Date().getTime()-time>=5000){//当动画时间执行超过5秒时进行操作
+                bTime=true;
+            };
+            if(bTime){
+                clearInterval(otimer);
+                wel.style.opacity=0;
 
+            };
+        },1000);
+        function end() {
+            removeClass(wel,"pageShow");
+            fnTab();
+        }
+
+    };
+    fnLoad();
     //tab切换功能
     function fnTab(){
         var tab=id('tabPic');
@@ -217,7 +241,7 @@ window.onload=function () {
 
  };
 
-    fnTab();
+
     fnScore();
     fnIndex();
 };
