@@ -32,7 +32,21 @@
 
 </section>
 <!--新闻页-->
-<section class="page " id="news">新闻页</section>
+<section class="page " id="news">
+    <img src="img/news.png" alt="">
+    <h2>请上传旅游投诉以及突发事件线索</h2>
+    <div class="file">
+        <label>
+            <input type="file" />
+            <span>导入视频</span>
+        </label>
+        <label>
+            <input type="file" />
+            <span>上传照片</span>
+        </label>
+    </div>
+    <p class="info"></p>
+</section>
 <!--跳转页面-->
 <section class="page" id="mask"></section>
 <!--首页-->
@@ -166,13 +180,15 @@
     </div>
 </section>
 
-<section class="page">表单页</section>
+<section class="page" id="form">表单页</section>
 
 
 <section class="page">上传成功</section>
 <script src="js/index.js"></script>
 <script>
     document.body.style.height=view().h+'px';
+//    fnLoad();
+
 </script>
 </body>
 </html>

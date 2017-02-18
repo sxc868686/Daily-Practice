@@ -69,7 +69,7 @@ window.onload=function () {
         }
 
     };
-    fnLoad();
+    
     //tab切换功能
     function fnTab(){
         var tab=id('tabPic');
@@ -229,6 +229,7 @@ window.onload=function () {
         var news=id('news');
         addClass(oMask,'pageShow');
         addClass(news,'pageShow');
+        fnNews();
        setTimeout(function () {
             oMask.style.opacity=1;
             oIndex.style.filter=oIndex.style.WebkitFiter="blur(5px)";//当弹窗时背景变模糊
@@ -240,8 +241,39 @@ window.onload=function () {
         },3000)
 
  };
+    
+    //新闻页上传文件
+    function fnNews() {
+        var oNews=id('news');
+        var oInfo=oNews.getElementsByClassName('info')[0];
+        var aInput=oNews.getElementsByTagName('input');
+        aInput[0].onchange=function () {
+            //console.log(this.files);
+            if(this.files[0].type.split("/")[0]=='video'){
+                fnNewOut();
+            }else {
+                fnInfo(oInfo,'请上传视频')
+            }
+        };
+        aInput[1].onchange=function () {
+            if(this.files[0].type.split("/")[0]=='image'){
+                fnNewOut();
+            }else {
+                fnInfo(oInfo,'请上传图片')
+            }
+        };
+    };
 
+    //评价完成后跳转到表单页
+    function fnNewOut() {
+        var oNews=id('news');
+        var form=id('form');
+        removeClass(oNews,'pageShow');
+        oNews.style.cssText='';
+        addClass(form,'pageShow');
+    }
 
+    fnLoad();
     fnScore();
     fnIndex();
 };
