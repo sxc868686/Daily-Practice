@@ -268,7 +268,10 @@ window.onload=function () {
     function fnNewOut() {
         var oNews=id('news');
         var form=id('form');
+        var mask=id('mask');
         removeClass(oNews,'pageShow');
+        removeClass(id('index'),'pageShow');
+        removeClass(mask,'pageShow');
         oNews.style.cssText='';
         addClass(form,'pageShow');
     }
@@ -290,11 +293,21 @@ window.onload=function () {
             if(bOff){
                 addClass(over,'pageShow');
                 removeClass(oForm,'pageShow');
+                Fnover();
             };
+        });
+    };
+    //上传成功
+    function Fnover(){
+        var oOver=id("over");
+        var oBtn=oOver.getElementsByClassName("btn")[0];
+        bind(oBtn,"touchend",function(){
+            removeClass(oOver,"pageShow");
+            addClass(id('index'),'pageShow');
         });
     }
     formIn();
-    // fnLoad();
-    // fnScore();
-    // fnIndex();
+    fnLoad();
+    fnScore();
+    fnIndex();
 };

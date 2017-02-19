@@ -109,7 +109,7 @@ border-radius: 26px;}
 
 /*首页（提交）*/
 .btn{position: absolute; bottom: 17px; left: 17px; width: 606px; height: 74px;
-font-size: 30px; background: #cacaca; border-radius: 5px; color: #fff;}
+font-size: 30px; background: #cacaca; border-radius: 5px; color: #fff; text-align: center;}
 .submit{background: #3c9bbb; color: white;}
 .info{font-size: 26px; line-height: 60px; text-align: center; width: 100%;
 position: absolute; bottom: 90px; -webkit-transform-origin: bottom; transform-origin: bottom;
