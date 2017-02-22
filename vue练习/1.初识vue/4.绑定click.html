@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="./vue.js"></script>
+</head>
+<body>
+<!--模板-->
+<div id="demo">
+    <span v-on:click="click">{{message}}</span>
+</div>
+
+<script>
+    //数据
+    let data = {
+        message:"hello,Vue!"
+    }
+    //声明式渲染
+    var vm=new Vue({
+        el:"#demo",//挂载元素
+        data:data,
+        methods:{
+            click(){
+                alert(1);
+            }
+        }
+    });
+
+</script>
+
+</body>
+
+</html>
