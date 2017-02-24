@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="./vue.js"></script>
+</head>
+<body>
+<!--模板-->
+<div id="demo">
+
+</div>
+<script>
+
+    var obj={
+        abc:'123'
+    }
+    var str='<div>hello,{{abc}},view</div>';
+    var vm=new Vue({
+        el:'#demo',
+        data:obj,
+        template:str
+    });
+
+
+</script>
+
+</body>
+
+</html>
