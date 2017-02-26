@@ -14,29 +14,46 @@
 </div>
 <div class="main">
   <h3 class="big-title">添加任务：</h3>
-  <input placeholder="例如：吃饭睡觉打豆豆；    提示：+回车即可添加任务"
+  <input placeholder="例如：吃饭；    提示：回车即可添加任务"
           class="task-input"
           type="text"
           v-model="txt"
           @keyup.enter="add"/>
   <!--回车添加任务-->
   <ul class="task-count" v-show="list.length">
-    <li>0个任务未完成</li>
+      <!--利用filter来判断完成的任务数量-->
+    <li>
+        <!--模板中放入逻辑会造成后期难以维护，改用computed：计算属性来实现-->
+        <!--{{-->
+            <!--list.filter(function(item){-->
+                <!--return !item.ischecked-->
+            <!--}).length-->
+        <!--}}-->
+        {{unCheckedSum}}个任务未完成</li>
   </ul>
   <h3 class="big-title">任务列表：</h3>
   <div class="tasks">
 
     <span class="no-task-tip" v-show="!list.length">还没有添加任何任务</span>
-    <ul class="todo-list">
-      <li class="todo" :class="{completed:item.ischecked}"  v-for="item in list">
+    <ul class="todo-list">                                  <!--双击之后，如果循环过程中有一项和updatetxt的值相同，则编辑这一条-->
+      <li class="todo " :class="{completed:item.ischecked,editing:item===updatetxt}"
+          v-for="item in list">
         <div class="view">
           <input class="toggle" type="checkbox" v-model="item.ischecked" />
-          <label>{{item.title}}</label>
+            <!--添加双击事件-->
+          <label @dblclick="dbclick(item)">{{item.title}}</label>
           <button class="destroy" @click="deletes(item)"></button>
         </div>
         <input
                 class="edit"
-                type="text"/>
+                type="text"
+                v-model="item.title"
+                v-focus="updatetxt===item"
+                @blur="blurs(item)"
+                @keyup.enter="blurs(item)"
+                @keyup.esc="cancels(item)"
+        />
+
       </li>
     </ul>
   </div>
