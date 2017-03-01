@@ -87,12 +87,19 @@
         */
         function open() {//排序估价函数
             var nowLi=openArr.shift();//取出当前开始的点
+
+            if(nowLi==endLi[0]){//当走到终点的时候，停止递归,并开始打印路线
+                showLine();
+                return;
+            }
+
             close(nowLi);//因为是已经走过的点，放到干扰节点中
             findLi(nowLi);
             openArr.sort(function (li1,li2) {
                 return li1.num-li2.num;//进行升序排序,将最近的点排到第一个
             });
             console.log(openArr);
+            open();
         }
 
         function close(nowLi) {//排除干扰节点
@@ -112,21 +119,51 @@
                             return false;
                         }
                 }
+                for(var i=0;i<openArr.length;i++){
+                    if(openArr[i]==ali){//如果下一个起始点周围有之前周边的点，则过滤掉
+                        return false;
+                    }
+                }
                 return true;
             }
             for (var k=0;k<result.length;k++){//寻找开始点周围的点
                 //如果差值小于等于li的宽度，则为开始点周围的点,+1是因为边框的原因
                 if((Math.abs(nowLi.offsetLeft-result[k].offsetLeft)<=sizeGird+1)&&(Math.abs(nowLi.offsetTop-result[k].offsetTop)<=sizeGird+1)){
                         result[k].num=f(result[k]);//将估计函数挂载到自定义属性上面去，方便进行排序
+                        result[k].parent=nowLi;//将当前起点存入自定义属性，方便寻找路线
                         openArr.push(result[k]);
                 }
             };
+        }
+        /*
+            打印路线
+        */
+        function showLine() {
+            var result=[];//存储走过路线的节点
+            var lastLi=closeArr.pop();//取出最后一个开始点
+            var iNow=0;
+            findParent(lastLi);
+            function findParent(li) {
+                result.unshift(li);//依次倒序添加
+                if(li==startLi[0]){//如果添加到起点时，则停止递归
+                    return;
+                }
+                findParent(li.parent);
+            }
+            //设置定时器，让线路进行动态变化
+            var timer=setInterval(function () {
+                result[iNow].style.background = 'red';
+                iNow++;
+                if(iNow == result.length){
+                    clearInterval(timer);
+                }
+            },300)
         }
 
         /*计算公式
          f(n)  =  g(n) + h(n)
          f(n)是n节点的估价函数
-         g(n)是初始点到n节点的实际代价（也就是最短路径）
+         g(n)是初始点到n节点的实际代价
          h(n)是n节点到目标点的实际代价
         * */
         function f(Nodeli) {//Nodeli为每一个后续的节点
