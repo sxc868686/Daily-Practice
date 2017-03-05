@@ -30,6 +30,11 @@
             <!--}).length-->
         <!--}}-->
         {{unCheckedSum}}个任务未完成</li>
+      <li class="action">
+          <a class="active" href="#all">所有任务</a>
+          <a href="#unfinished">未完成的任务</a>
+          <a href="#finish">完成的任务</a>
+      </li>
   </ul>
   <h3 class="big-title">任务列表：</h3>
   <div class="tasks">
@@ -37,7 +42,7 @@
     <span class="no-task-tip" v-show="!list.length">还没有添加任何任务</span>
     <ul class="todo-list">                                  <!--双击之后，如果循环过程中有一项和updatetxt的值相同，则编辑这一条-->
       <li class="todo " :class="{completed:item.ischecked,editing:item===updatetxt}"
-          v-for="item in list">
+          v-for="item in filterList">
         <div class="view">
           <input class="toggle" type="checkbox" v-model="item.ischecked" />
             <!--添加双击事件-->
@@ -58,6 +63,6 @@
     </ul>
   </div>
 </div>
-<script src="./index.js"></script>
+<script src="./index.js" ></script>
 </body>
 </html>

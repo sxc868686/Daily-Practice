@@ -1,22 +1,37 @@
-var list=[//数据
-    {
-        title:'吃饭',
-        ischecked:false //表示不选中
-    },
-    {
-        title:'睡觉',
-        ischecked:true //表示选中
-    }
 
-];
+//存取localStorage中的数据
+
+var store={
+    //保存
+    save:function (key,value) {
+        localStorage.setItem(key,JSON.stringify(value));
+    },
+    //取值
+    fetch:function (key) {
+        return JSON.parse(localStorage.getItem(key))||[];
+    }
+};
+
+
+ var list=store.fetch('one');
 //实例化
-new Vue({
+var vm=new Vue({
     el:'.main',//挂载点
     data:{//传数据
         list:list,
         txt:'', //记录文本框输入的值
         updatetxt:'', //记录正在编辑的数据
         oldtitle:'', //记录修改前的title
+        visibililty:'all' //通过属性值变化进行属性筛选
+    },
+    watch:{//监听函数
+
+        list:{
+            handler:function () {//监控list，当list发生变化时此函数执行
+                store.save('one',this.list);
+            },
+            deep:true //深度监控，可以监控list里的对象是否发生变化
+        }
     },
     methods:{//方法统一管理
         add:function () {//添加任务
@@ -49,6 +64,26 @@ new Vue({
             return this.list.filter(function(item){
                 return !item.ischecked
             }).length;
+        },
+        filterList:function () {//过滤任务方法
+            //三种情况
+            var filter={
+                all:function (list) {
+                    return list;
+                },
+                finish:function (list) {
+                    return list.filter(function (item) {
+                        return item.ischecked;
+                    })
+                },
+                unfinished:function (list) {
+                    return list.filter(function (item) {
+                        return !item.ischecked;
+                    })
+                }
+            }
+            //找到过滤函数就返回过滤后的数据，没有则返回全部数据
+            return filter[this.visibililty]?(list):list;
         }
     },
     directives:{//自定义指令
@@ -64,3 +99,10 @@ new Vue({
         }
     }
 });
+
+function watch() {//监听hash
+    var hash=window.location.hash.slice(1);
+    vm.visibililty=hash;
+}
+watch();
+window.addEventListener('hashchange',watch);//当hash改变时执行
